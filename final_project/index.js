@@ -25,23 +25,6 @@ app.use("/customer/auth/*", function auth(req,res,next){
         next();
     });
 });
-
-app.post("/register", (req, res) => {
-    const {username, password} = req.body;
-
-    if (!isValid(username)) {
-        return res.status(400).json({message: "Invalid username"});
-    }
-
-    const userExists = users.some((u) => u.username === username);
-
-    if (userExists) {
-        return res.status(400).json({message: "User already exists"});
-    }
-
-    users.push({username, password});
-    res.status(201).json({message: "User registered successfully"});
-})
  
 const PORT =5000;
 
